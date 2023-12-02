@@ -23,26 +23,21 @@ function isPossible(cube) {
   const num = parseInt(cube);
   const colorLimits = { red: 12, green: 13, blue: 14 };
 
-  return Object.entries(colorLimits).some(([color, limit]) => 
-    cube.endsWith(` ${color}`) && num <= limit
-  );
+  return Object.entries(colorLimits).some(([color, limit]) => cube.endsWith(` ${color}`) && num <= limit);
 }
+
 
 // Part 1 answer, adding the sums of the game ids of winning games
 function calculatePart1(games) {
-  return games.reduce((sum, game, index) => {
-    const isGameValid = game.every(set => set.every(isPossible));
-    return sum + (isGameValid ? index + 1 : 0);
-  }, 0);
+  return games.reduce((sum, game, index) => sum + (game.every(set => set.every(isPossible)) ? index + 1 : 0), 0);
 }
+
 // Part 2 answer, similar to the first part but now with more Math.
 function calculatePart2(games) {
   return games.reduce((sum, game) => {
-    const flatMap = game.flat().map(g => g.trim());
-    const maxPerColor = [' red', ' green', ' blue'].map(color => 
-      Math.max(...flatMap.filter(x => x.endsWith(color)).map(x => parseInt(x, 10)))
-    );
-    return sum + maxPerColor.reduce((product, value) => product * value, 1);
+    return sum + [' red', ' green', ' blue'].reduce((product, color) => {
+      return product * Math.max(...game.flat().map(g => g.trim().endsWith(color) ? parseInt(g, 10) : 0));
+    }, 1);
   }, 0);
 }
 
