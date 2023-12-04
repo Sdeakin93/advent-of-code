@@ -1,4 +1,4 @@
-// I like that I can just copy and paste this code again
+// really like that I can just copy and paste this code again
 const fs = require('fs');
 const path = require('path');
 
@@ -28,7 +28,8 @@ fs.readFile(path.join(__dirname, 'input.txt'), 'utf8', (err, data) => {
         // calculating how many of my numbers are winning
         const totalPoints = myNumbers.filter((num) => winningNumbers.includes(num)).length;
        
-        // If totalPoints is greater than 0, it calculates the score for part1 as a power of 2 based on totalPoints. It then updates scratchcardInstances for subsequent lines based on current and past values.
+        // If totalPoints is greater than 0, it calculates the score for part 1 as a power of 2 based on totalPoints. It then updates scratchcardInstances for subsequent lines based on current and past values.
+       // the power of 2? more like the power of love by huey lewis and the news
         if (totalPoints) {
             const points = 2 ** (totalPoints - 1);
             part1 += points;
