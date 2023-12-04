@@ -11,7 +11,7 @@ fs.readFile(path.join(__dirname, 'input.txt'), 'utf8', (err, data) => {
 
     // so we can calculate our points
     let part1 = 0, part2 = 0;
-    // Splitting file content into individual lines
+    // Splitting input content into individual lines
     const lines = data.split(/\r?\n/);
 
     // creates an array of all of the lines, with a length equal to the number of lines in the input file. Each element of the array is initially set to 1.
